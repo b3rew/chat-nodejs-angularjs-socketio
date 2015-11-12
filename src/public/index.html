@@ -75,8 +75,8 @@ FB.getLoginStatus(function(response) {
             <ul class="nav navbar-nav">
                 <li><a ng-href="#/">Home</a></li>
                 <li><a ng-href="#/profile">Profile</a></li>
-                <li
-                    <a ng-href="#/channel">Channel</a>
+                <li>
+                    <a ng-href="#/channel">Channels</a>
                </li>
                 <li><a ng-href="#/chat" ng-cloak ng-if="Storage.channel.get().name">Chat</a></li>
                 <li ng-cloak ng-if="isConnected"><a><span class="text-success">Connected</span></a></li>
@@ -92,18 +92,6 @@ FB.getLoginStatus(function(response) {
     <ng-view></ng-view>
 </div>
 
-<!--
-<div id="footer">
-    <div class="container">
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <p class="text-muted">Copyright&copy; 2015 http://chat.iliyan-trifonov.com</p>
-            </div>
-        </div>
-    </div>
-</div>
--->
 
 <script type="text/ng-template" id="/templates/modal.html">
     <div class="modal-header">

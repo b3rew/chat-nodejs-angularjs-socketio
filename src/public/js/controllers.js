@@ -17,8 +17,8 @@
                 name: '',
                 password: ''
             };
-
-            //TODO: add a loading indicator until the channel is joined and page changed or error is returned
+            $scope.chans = ["test channel 1", "test channel 2", "test channel 3", "test channel 4"]
+            //TODO: add a loading indicator until the channel is joined and page changed or error i returned
 
             $scope.createChannel = function () {
                 $location.path('/chat');
@@ -29,6 +29,16 @@
                     });
                 });
             };
+            $scope.getChannel = function(chan){
+                   $location.path('/chat');
+                    $timeout(function () {
+                        socket.emit('get channel', user, {
+                            name: chan,
+                            password: ''
+                        });
+                         // $location.path('/chat');
+                    });
+            }
 
             $scope.joinChannel = function () {
                 $location.path('/chat');

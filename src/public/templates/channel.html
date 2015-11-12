@@ -1,17 +1,46 @@
 <div class="row">
     <div class="col-md-12">
 
-        <div class="page-header">
-            <h2>Channel</h2>
-        </div>
+        
+        <div class="col-sm-5 bs-docs-sidebar">
+            <div class="page-header text-center">
+                <h2>Top Channels</h2>
+            </div>
+            <div class="col-sm-6">
+                <ul class="nav nav-list bs-docs-sidenav affix-top">
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
 
-        <div class="col-md-4 col-md-offset-4">
-            <channel-form
-                channel="channel"
-                create-channel="createChannel()"
-                join-channel="joinChannel()"
-            ></channel-form>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul class="nav nav-list bs-docs-sidenav affix-top">
+                  <li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
+                  <li><a href="#transitions"><i class="icon-chevron-right"></i> Transitions</a></li>
+                  <li><a href="#modals"><i class="icon-chevron-right"></i> Modal</a></li>
+                  <li><a href="#dropdowns"><i class="icon-chevron-right"></i> Dropdown</a></li>
+                  <li><a href="#scrollspy"><i class="icon-chevron-right"></i> Scrollspy</a></li>
+                  <li><a href="#tabs"><i class="icon-chevron-right"></i> Tab</a></li>
+                </ul>
+            </div>
         </div>
+        <div  class="col-sm-7">
+            <div class="page-header text-center">
+                <h2 width="60%">Create New</h2>
+            </div>
+            <div class="col-md-9 col-md-offset-2">
+                <channel-form
+                    channel="channel"
+                    create-channel="createChannel()"
+                    join-channel="joinChannel()"
+                ></channel-form>
+            </div>
+        </div>
+        
 
     </div>
 </div>

@@ -47,7 +47,17 @@ export default class Chat {
             this.log.info('socket:join channel', { user: user, channel: channelReq });
             this.handleChannelJoin(socket, user, channelReq);
         });
-
+        socket.on('get channel', (user, channelReq) => {
+            this.log.info('socket:join channel', { user: user, channel: channelReq });
+            // this.handleChannelJoin(socket, user, channelReq);
+            if (!this.channelExists(channelReq.name)) {
+                this.handleChannelCreate(socket, channelReq);
+                // this.addChannel(channelReq);
+                this.log.info('socket:join channel', "----------------------------------");
+            }else{
+                this.handleChannelJoin(socket, user, channelReq);
+            }
+        });
         socket.on('leave channel', (user, channel) => {
             this.log.info('socket:leave channel', {user: user, channel: channel});
             this.handleChannelLeave(socket, user, channel);
