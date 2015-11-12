@@ -6,8 +6,8 @@ import { Server } from 'http';
 import socket from 'socket.io';
 import Chat from './chat/chat';
 import Logger from 'winston-console-graylog2-logger';
-var request = require('request');
-var OAuth2 = require('oauth2').OAuth2;
+//var request = require('request');
+//var OAuth2 = require('oauth2').OAuth2;
 
 let app = express();
 let http = Server(app);
