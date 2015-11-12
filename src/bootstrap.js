@@ -6,8 +6,10 @@ import { Server } from 'http';
 import socket from 'socket.io';
 import Chat from './chat/chat';
 import Logger from 'winston-console-graylog2-logger';
-var request = require('request');
-var OAuth2 = require('oauth2').OAuth2;
+import request from 'request';
+//import OAuth2 from 'oauth2';
+var OAuth2 = require('oauth').OAuth2;;
+//OAuth2 = OAuth2.OAuth2;
 
 let app = express();
 let http = Server(app);
@@ -16,41 +18,41 @@ let io = socket(http);
 app.use(express.static(__dirname + '/public'));
 
 var oauth2 = new OAuth2("937922429613259",
-                        "e14ad2befad1564f8f85e55764698b83",
-                       "", "https://www.facebook.com/dialog/oauth",
-                   "https://graph.facebook.com/oauth/access_token",
-                   null);
-  
+    "e14ad2befad1564f8f85e55764698b83",
+    "", "https://www.facebook.com/dialog/oauth",
+    "https://graph.facebook.com/oauth/access_token",
+    null);
+
 app.get('/facebook/auth',function (req, res) {
-      var redirect_uri = "/#/channel";
-      // For eg. "http://localhost:3000/facebook/callback"
-      var params = {'redirect_uri': redirect_uri, 'scope':'user_about_me,publish_actions'};
-      res.redirect(oauth2.getAuthorizeUrl(params));
+    var redirect_uri = "https://habesha-chat.herokuapp.com/#/channel";
+    // For eg. "http://localhost:3000/facebook/callback"
+    var params = {'redirect_uri': redirect_uri, 'scope':'user_about_me,publish_actions'};
+    res.redirect(oauth2.getAuthorizeUrl(params));
 });
 app.get("/#/channel", function (req, res) {
- if (req.error_reason) {
-  res.send(req.error_reason);
- }
- if (req.query.code) {
-  var loginCode = req.query.code;
-  var redirect_uri = "/#/channel"; // Path_To_Be_Redirected_to_After_Verification
- // For eg. "/facebook/callback"
-  oauth2.getOAuthAccessToken(loginCode, 
- { grant_type: 'authorization_code', 
- redirect_uri: redirect_uri}, 
-   function(err, accessToken, refreshToken, params){
-    if (err) {
-     console.error(err);
-   res.send(err);
+    if (req.error_reason) {
+        res.send(req.error_reason);
     }
-    var access_token = accessToken;
-    var expires = params.expires;
- req.session.access_token = access_token;
- req.session.expires = expires;
+    if (req.query.code) {
+        var loginCode = req.query.code;
+        var redirect_uri = "https://habesha-chat.herokuapp.com/#/channel"; // Path_To_Be_Redirected_to_After_Verification
+        // For eg. "/facebook/callback"
+        oauth2.getOAuthAccessToken(loginCode,
+            { grant_type: 'authorization_code',
+                redirect_uri: redirect_uri},
+            function(err, accessToken, refreshToken, params){
+                if (err) {
+                    console.error(err);
+                    res.send(err);
+                }
+                var access_token = accessToken;
+                var expires = params.expires;
+                req.session.access_token = access_token;
+                req.session.expires = expires;
+            }
+        );
     }
-  );
- }
-});
+})
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
