@@ -14,7 +14,7 @@ let http = Server(app);
 let io = socket(http);
 
 app.use(express.static(__dirname + '/public'));
-
+/*
 var oauth2 = new OAuth2("937922429613259",
                         "e14ad2befad1564f8f85e55764698b83",
                        "", "https://www.facebook.com/dialog/oauth",
@@ -50,7 +50,7 @@ app.get("/#/channel", function (req, res) {
     }
   );
  }
-});
+});*/
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
