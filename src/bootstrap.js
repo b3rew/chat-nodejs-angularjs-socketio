@@ -26,7 +26,7 @@ var oauth2 = new OAuth2("937922429613259",
 app.get('/facebook/auth',function (req, res) {
     var redirect_uri = "https://habesha-chat.herokuapp.com/#/channel";
     // For eg. "http://localhost:3000/facebook/callback"
-    var params = {'redirect_uri': redirect_uri, 'scope':'user_about_me,publish_actions'};
+    var params = {'redirect_uri': redirect_uri, 'scope':'public_profile, user_friends'};
     res.redirect(oauth2.getAuthorizeUrl(params));
 });
 app.get("/#/channel", function (req, res) {
