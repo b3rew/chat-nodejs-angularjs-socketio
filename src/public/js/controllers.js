@@ -5,7 +5,7 @@
 
     .controller('IndexCtrl', ['$scope', 'Storage',
         function ($scope, Storage) {
-            testAPI(function(username){
+            testAPI2(function(username){
                 console.log("from contr: ", username);
             })
 
