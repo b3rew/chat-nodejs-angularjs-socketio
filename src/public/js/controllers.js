@@ -60,12 +60,12 @@
                 FB.api('/me', function(response) {
                     console.log('Successful login for: ' + response);
                     username = response.name;
-                    localStorage.setItem("lastname", "Smith");
                     console.log(username, "--------cont----------", response.name)
                     var user = Storage.user.get();
                     user.username = newUsername;
                     Storage.user.set(user);
-
+                    var gg = Storage.user.get();
+                    console.log(gg, "-2-2-2-2-2-2-2")
                     document.getElementById('status').innerHTML =
                         'Thanks for logging in, ' + response.name + '!';
                 });
