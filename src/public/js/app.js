@@ -15,7 +15,8 @@
         $routeProvider
 
             .when('/', {
-                templateUrl: '/templates/index.html'
+                templateUrl: '/templates/index.html',
+                controller: 'IndexCtrl'
             })
 
             .when('/profile', {

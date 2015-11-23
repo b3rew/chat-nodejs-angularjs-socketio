@@ -19,7 +19,7 @@
     </script>
 </head>
 
-<body ng-app="sd" ng-controller="IndexCtrl">
+<body ng-app="Chat">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -44,7 +44,7 @@
                 <li><a ng-href="#/chat" ng-cloak ng-if="Storage.channel.get().name">Chat</a></li>
                 <li ng-cloak ng-if="isConnected"><a><span class="text-success">Connected</span></a></li>
                 <!--<li  ng-cloak ng-if="Storage.user.get().username">Welcome,  <a ng-href="#/profile"></a></li>-->
-                <li  ng-cloak ng-if="Storage.user.get().username">Welcome,  <a ng-href="#/profile">{{Storage.user.get().username}}!</a></li>
+                <!--<li  ng-cloak ng-if="Storage.user.get().username">Welcome,  <a ng-href="#/profile">{{Storage.user.get().username}}!</a></li>-->
             </ul>
         </div>
     </div>
