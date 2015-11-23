@@ -62,7 +62,7 @@
                     username = response.name;
                     console.log(username, "--------cont----------", response.name)
                     localStorage.setItem('username', username);
-                    $scope.username = localStorage.getItem("username");
+                    $scope.username = username;
                 });
             }
 
