@@ -72,11 +72,12 @@
         }(document, 'script', 'facebook-jssdk'));
 
 
-        function testAPI() {
+        function testAPI(done) {
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function(response) {
                 console.log('Successful login for: ' + response);
                 username = response.name;
+                done(response.name);
                 console.log(username, "------------------", response.name)
                 document.getElementById('status').innerHTML =
                         'Thanks for logging in, ' + response.name + '!';
