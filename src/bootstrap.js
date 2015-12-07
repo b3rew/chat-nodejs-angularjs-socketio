@@ -39,8 +39,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-
-http.listen(4000, () => console.info('Chat App listening on *:4000'));
+var thePort = process.env.PORT || 3000
+http.listen(thePort, () => console.info('Chat App listening on *:'+thePort));
 
 config.logger = config.logger || {};
 
