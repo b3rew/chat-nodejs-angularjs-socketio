@@ -42,6 +42,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+app.use('/vendor', express.static(__dirname+'/public/vendor'));
 var thePort = process.env.PORT || 3000
 http.listen(thePort, () => console.info('Chat App listening on *:'+thePort));
 
