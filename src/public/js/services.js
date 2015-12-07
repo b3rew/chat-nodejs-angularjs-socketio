@@ -44,7 +44,7 @@
                     return text.join('<br/>');
                 },
                 addText: function(newText) {
-                    text.push(newText);
+                    text.push(newText+" ");
                 },
                 replaceText: function (newText) {
                     text = newText;

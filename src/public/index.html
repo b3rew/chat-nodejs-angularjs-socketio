@@ -9,14 +9,25 @@
     <title>Habesha Chat</title>
     <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-
+    
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-
-    </script>
+    <style>
+	.tweets {
+	    height: 500px;
+	    overflow: scroll;
+	}
+	.jumbotron2{
+		height:600px;		
+	}
+	@media screen and (min-width: 768px)
+	.container .jumbotron, .container-fluid .jumbotron {
+	    padding-right: 0px;
+	    padding-left: 0px;
+	}
+    </style>
 </head>
 
 <body ng-app="Chat">
@@ -40,20 +51,21 @@
                 <li><a ng-href="#/profile">Profile</a></li>
                 <li>
                     <a ng-href="#/channel">Channels</a>
-                </li>
+               </li>
                 <li><a ng-href="#/chat" ng-cloak ng-if="Storage.channel.get().name">Chat</a></li>
                 <li ng-cloak ng-if="isConnected"><a><span class="text-success">Connected</span></a></li>
-                <!--<li  ng-cloak ng-if="Storage.user.get().username">Welcome,  <a ng-href="#/profile"></a></li>-->
-                <!--<li  ng-cloak ng-if="Storage.user.get().username">Welcome,  <a ng-href="#/profile">{{Storage.user.get().username}}!</a></li>-->
+    <li  ng-cloak ng-if="Storage.user.get().username"><a ng-href="#/profile">Welcome, {{Storage.user.get().username}}!</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container">
-
+    
     <h1 id="fb-welcome"></h1>
     <ng-view></ng-view>
+  	
+
 </div>
 
 
@@ -68,7 +80,22 @@
     </div>
 </script>
 
+
 <script type="text/javascript" src="/vendor/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/vendor/linkify/linkify.min.js"></script>
+<script type="text/javascript" src="/vendor/linkify/linkify-jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('stream', function(tweet){
+	   var twi = "<img src='"+tweet.user.profile_image_url+"' class='img-circle'> &nbsp;<span>"+tweet.text+'</span><br>';	   
+           $('#tweetd').prepend(twi);
+	   $('#tweetd').linkify({
+	    target: "_blank"
+	   });
+        });
+	
+    </script>
 <script type="text/javascript" src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/vendor/angular/angular.min.js"></script>
 <script type="text/javascript" src="/vendor/angular-route/angular-route.min.js"></script>
@@ -77,10 +104,6 @@
 <script type="text/javascript" src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="/vendor/zeroclipboard/dist/ZeroClipboard.min.js"></script>
 <script type="text/javascript" src="/vendor/ng-clip/dest/ng-clip.min.js"></script>
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script type="text/javascript">
-    var socket = io();
-</script>
 
 <script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript" src="/js/controllers.js"></script>

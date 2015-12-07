@@ -77,12 +77,14 @@
                 scope: {
                     channel: '=',
                     username: '=',
-                    focusSendMessage: '='
+                    focusSendMessage: '=',
+                    amh: '='
                 },
                 templateUrl: '/templates/directives/chat-message.html',
                 link: function (scope, element, attrs) {
                     scope.sendMessage = function () {
                         if (scope.message) {
+                            console.log(scope.message);
                             socket.emit('new message', {
                                 //TODO: channel and user should be omitted in single channel mode
                                 channel: scope.channel,
@@ -94,7 +96,12 @@
                     };
 
                     scope.messageKeyPressed = function (event) {
+                        console.log("still on");
+                        if(scope.amh){
+                            console.log("still on");
+                        }
                         if (event.keyCode === 13 && scope.message) {
+                            console.log("still off");
                             scope.sendMessage();
                         }
                     };
@@ -181,7 +188,7 @@
                 require: 'ngModel',
                 link: function (scope, element, attrs, modelCtrl) {
                     modelCtrl.$parsers.push(function (value) {
-                        var newValue = value.replace(/[^\u00BF-\u1FFF\u2C00-\uD7FF\w\-\_\.\ ]+/g, '');
+                        //var newValue = value.replace(/[^\u00BF-\u1FFF\u2C00-\uD7FF\w\-\_\.\ ]+/g, '');
                         if (newValue !== value) {
                             modelCtrl.$setViewValue(newValue);
                             modelCtrl.$render();

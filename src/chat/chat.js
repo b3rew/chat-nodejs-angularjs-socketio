@@ -67,7 +67,7 @@ export default class Chat {
             this.log.info('socket:new message', {
                 channelName: message.channel,
                 user: message.user,
-                text: message.text
+                text: message.text +" 1"
             });
             this.handleNewMessage(message);
         });

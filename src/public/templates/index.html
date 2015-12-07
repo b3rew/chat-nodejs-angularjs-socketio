@@ -1,7 +1,37 @@
-<div class="jumbotron">
-    <h1>Welcome to Habesha Chat!</h1>
-    Welcome,  <a ng-href="#/profile">{{ $scope.username }}!</a>
-    <p>Go to <a href="/facebook/auth">Login</a> to create or join one.</p>
-    <p>Go to <a href="#/channel">Channel</a> to create or join one.</p>
-    <p>Check the <a href="#/profile">Profile</a> page where you can change your username.</p>
+<div class="jumbotron2">
+	<div class="col-lg-12">
+         <div class="col-sm-5 bs-docs-sidebar">
+            <div class="page-header text-center">
+                <h2>Top Channels</h2>
+            </div>
+            <div class="col-sm-6  text-center">
+                <ul class="nav nav-list bs-docs-sidenav affix-top">
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
+                  <li><a href="" ng-click="getChannel('Public')"><i class="icon-chevron-right"></i> Public</a></li>
+                  <li><a href="" ng-click="getChannel('Politics')"><i class="icon-chevron-right"></i> Politics</a></li>
+
+                </ul>
+            </div>
+            <div class="col-sm-6 text-center">
+                <ul class="nav nav-list bs-docs-sidenav affix-top">
+                  <li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
+                  <li><a href="#transitions"><i class="icon-chevron-right"></i> Transitions</a></li>
+                  <li><a href="#modals"><i class="icon-chevron-right"></i> Modal</a></li>
+                  <li><a href="#dropdowns"><i class="icon-chevron-right"></i> Dropdown</a></li>
+                  <li><a href="#scrollspy"><i class="icon-chevron-right"></i> Scrollspy</a></li>
+                  <li><a href="#tabs"><i class="icon-chevron-right"></i> Tab</a></li>
+                </ul>
+            </div>
+        </div>
+	 <div class="col-lg-7">
+	   <h3 class="text-center">Ethiopia on Twitter</h3>
+	  <div class="tweets well">
+	    <div id="tweetd"></div>
+	  </div>
+	 </div>
+
+	</div>
 </div>

@@ -6,61 +6,41 @@ import { Server } from 'http';
 import socket from 'socket.io';
 import Chat from './chat/chat';
 import Logger from 'winston-console-graylog2-logger';
-import request from 'request';
-//import OAuth2 from 'oauth2';
-var OAuth2 = require('oauth').OAuth2;;
-//OAuth2 = OAuth2.OAuth2;
+
+var Twit = require('twit')
 
 let app = express();
 let http = Server(app);
 let io = socket(http);
 
-app.use(express.static(__dirname + '/public'));
-
-var oauth2 = new OAuth2("937922429613259",
-    "e14ad2befad1564f8f85e55764698b83",
-    "", "https://www.facebook.com/dialog/oauth",
-    "https://graph.facebook.com/oauth/access_token",
-    null);
-
-app.get('/facebook/auth',function (req, res) {
-    var redirect_uri = "https://habesha-chat.herokuapp.com/#/channel";
-    // For eg. "http://localhost:3000/facebook/callback"
-    var params = {'redirect_uri': redirect_uri, 'scope':'public_profile, user_friends'};
-    res.redirect(oauth2.getAuthorizeUrl(params));
-});
-app.get("/#/channel", function (req, res) {
-    if (req.error_reason) {
-        res.send(req.error_reason);
-    }
-    if (req.query.code) {
-        var loginCode = req.query.code;
-        var redirect_uri = "https://habesha-chat.herokuapp.com/#/channel"; // Path_To_Be_Redirected_to_After_Verification
-        // For eg. "/facebook/callback"
-        oauth2.getOAuthAccessToken(loginCode,
-            { grant_type: 'authorization_code',
-                redirect_uri: redirect_uri},
-            function(err, accessToken, refreshToken, params){
-                if (err) {
-                    console.error(err);
-                    res.send(err);
-                }
-                var access_token = accessToken;
-                var expires = params.expires;
-                req.session.access_token = access_token;
-                req.session.expires = expires;
-            }
-        );
-    }
+var watchList = ['ethiopia', 'ethio', 'addis ababa'];
+ var T = new Twit({
+    consumer_key:         'AdvdYadwnuaAA7LlJ2bMr6XBp'
+  , consumer_secret:      'XhJStrt51rlawl7w4ooolRCo1o2tIegOj4N9IDTAzE3AHNYhOr'
+  , access_token:         '242223409-ltdnRyn4pXsO9Pttr31ICocsGdU2uxP8qk5GwbPq'
+  , access_token_secret:  'O63DxXfcOim0Cq1qyjZHPDMed15TwuoWyIHb36yzPlU2X'
 })
+
+io.sockets.on('connection', function (socket) {
+  console.log('Connected');
+
+
+var stream = T.stream('statuses/filter', { track: watchList })
+
+  stream.on('tweet', function (tweet) {
+
+  io.sockets.emit('stream',tweet);
+
+
+});
+});
+
+app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-app.post('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-});
-var thePort = process.env.PORT || 4000;
-http.listen(thePort, () => console.info('Chat App listening on *:'+thePort));
+
+http.listen(4000, () => console.info('Chat App listening on *:4000'));
 
 config.logger = config.logger || {};
 
