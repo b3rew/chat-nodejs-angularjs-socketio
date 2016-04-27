@@ -15,10 +15,10 @@ let io = socket(http);
 
 var watchList = ['ethiopia', 'ethio', 'addis ababa'];
  var T = new Twit({
-    consumer_key:         'AdvdYadwnuaAA7LlJ2bMr6XBp'
-  , consumer_secret:      'XhJStrt51rlawl7w4ooolRCo1o2tIegOj4N9IDTAzE3AHNYhOr'
-  , access_token:         '242223409-ltdnRyn4pXsO9Pttr31ICocsGdU2uxP8qk5GwbPq'
-  , access_token_secret:  'O63DxXfcOim0Cq1qyjZHPDMed15TwuoWyIHb36yzPlU2X'
+    consumer_key:         '*'
+  , consumer_secret:      '*'
+  , access_token:         '*'
+  , access_token_secret:  '*'
 })
 
 io.sockets.on('connection', function (socket) {
